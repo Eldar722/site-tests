@@ -12,14 +12,15 @@ from typing import Any
 # Путь до фронтенда — ищем относительно этого файла или через ENV
 _HERE = pathlib.Path(__file__).resolve().parent  # project/src/
 _PROJECT_ROOT = _HERE.parent                      # project/
-_REPO_ROOT = _PROJECT_ROOT.parent                 # корень репозитория
+_REPO_ROOT = _PROJECT_ROOT.parent                 # корень репозитория site-tests/
 
 _FRONTEND_CANDIDATES = [
-    # Основной вариант: electrovan-app/ рядом с project/ в одном репо
+    # Основной: electrovan-app/ рядом с project/ в одном репо (ваша структура)
     _REPO_ROOT / "electrovan-app" / "src",
-    # Запасные варианты (локальная разработка)
+    # Запасные для локальной разработки
     _REPO_ROOT / "electrovan_master" / "Electrovan-master" / "electrovan-app" / "src",
     _REPO_ROOT / "Electrovan-master" / "electrovan-app" / "src",
+    _PROJECT_ROOT / "Electrovan-master" / "electrovan-app" / "src",
 ]
 
 def _find_frontend_src() -> pathlib.Path:
@@ -47,43 +48,56 @@ def read_file(relative_path: str) -> str:
 # cars.js
 # ─────────────────────────────────────────────────────────────────────────────
 
-def parse_cars() -> list[dict]:
+def parse_cars() -> list:
     """
     Парсит data/cars.js и возвращает список машин как Python-словари.
-    Извлекает все поля объектов: id, brand, model, category, battery,
-    range, weight, seats, price, isPopular и т.д.
+    Поддерживает: JS-комментарии (// и /* */), любые image-переменные,
+    новые поля (fullPrice, usedIn, dimensions, volume, capacity и др.),
+    произвольное количество машин.
     """
     source = read_file("data/cars.js")
 
-    # Убираем import-строки и image-ссылки (заменяем на строку-заглушку)
+    # 1. Убираем import-строки (одинарные и двойные кавычки)
     source = re.sub(r"import\s+\w+\s+from\s+'[^']+';?\n?", "", source)
+    source = re.sub(r'import\s+\w+\s+from\s+"[^"]+";?\n?', "", source)
 
-    # Заменяем JS-переменные-картинки на строку
-    source = re.sub(r"\b(geelyCardImg|farizonModelImg|geelyPopularImg|renaultPopularImg|kiaPopularImg)\b",
-                    '"<image>"', source)
+    # 2. Заменяем ВСЕ JS-переменные-картинки (camelCase с суффиксом Img/Bg/Icon)
+    source = re.sub(
+        r'\b([a-z][a-zA-Z0-9]*(?:Img|Bg|Icon|Image|Photo|Pic))\b',
+        '"<image>"',
+        source
+    )
 
-    # Вытаскиваем содержимое массива cars = [ ... ]
-    m = re.search(r"export\s+const\s+cars\s*=\s*(\[[\s\S]+\]);", source)
+    # 3. Удаляем однострочные JS-комментарии: // ===== Geely =====
+    source = re.sub(r"//[^\n]*", "", source)
+
+    # 4. Удаляем многострочные JS-комментарии: /* ... */
+    source = re.sub(r"/\*[\s\S]*?\*/", "", source)
+
+    # 5. Извлекаем массив cars = [ ... ]
+    m = re.search(r"export\s+const\s+cars\s*=\s*(\[[\s\S]+?\])\s*;", source)
     if not m:
         raise ValueError("Не удалось найти 'export const cars = [...]' в data/cars.js")
 
     array_str = m.group(1)
 
-    # JS → JSON: ключи без кавычек → с кавычками
-    # Заменяем ключи вида `  brand:` → `"brand":`
-    array_str = re.sub(r'([{,]\s*)([a-zA-Z_]\w*)\s*:', r'\1"\2":', array_str)
-    # Одиночные кавычки → двойные
+    # 6. Ключи без кавычек → с кавычками: brand: → "brand":
+    array_str = re.sub(r'([{,\[]\s*)([a-zA-Z_$][a-zA-Z0-9_$]*)\s*:', r'\1"\2":', array_str)
+
+    # 7. Одиночные кавычки → двойные
     array_str = re.sub(r"'([^']*)'", r'"\1"', array_str)
-    # Trailing commas перед ] или }
-    array_str = re.sub(r",\s*([}\]])", r"\1", array_str)
-    # true/false уже в нижнем регистре — OK для JSON
+
+    # 8. Убираем trailing commas: ,} и ,]
+    array_str = re.sub(r",(\s*[}\]])", r"\1", array_str)
 
     try:
-        cars = json.loads(array_str)
+        return json.loads(array_str)
     except json.JSONDecodeError as e:
-        raise ValueError(f"Ошибка парсинга cars.js как JSON: {e}\n\nСтрока:\n{array_str[:500]}")
-
-    return cars
+        context = array_str[max(0, e.pos - 60): e.pos + 60]
+        raise ValueError(
+            f"Ошибка парсинга cars.js: {e.msg} (позиция {e.pos})\n"
+            f"Контекст: {repr(context)}"
+        )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
