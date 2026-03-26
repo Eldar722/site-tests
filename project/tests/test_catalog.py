@@ -8,6 +8,7 @@ test_catalog.py — тесты CatalogStore.
 Тесты не хранят моковые данные вручную: всё берётся из реальных JSX-исходников.
 """
 
+
 import pytest
 from src.catalog import CatalogStore
 from src.jsx_parser import parse_cars, parse_items_per_page, parse_categories
