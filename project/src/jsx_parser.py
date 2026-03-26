@@ -12,15 +12,14 @@ from typing import Any
 # Путь до фронтенда — ищем относительно этого файла или через ENV
 _HERE = pathlib.Path(__file__).resolve().parent  # project/src/
 _PROJECT_ROOT = _HERE.parent                      # project/
-_REPO_ROOT = _PROJECT_ROOT.parent                 # one level up (where zips were extracted)
+_REPO_ROOT = _PROJECT_ROOT.parent                 # корень репозитория
 
 _FRONTEND_CANDIDATES = [
-    # Если Electrovan-master рядом с папкой проекта
+    # Основной вариант: electrovan-app/ рядом с project/ в одном репо
+    _REPO_ROOT / "electrovan-app" / "src",
+    # Запасные варианты (локальная разработка)
     _REPO_ROOT / "electrovan_master" / "Electrovan-master" / "electrovan-app" / "src",
     _REPO_ROOT / "Electrovan-master" / "electrovan-app" / "src",
-    # Если запускают из корня репо, а frontend рядом
-    _PROJECT_ROOT / "Electrovan-master" / "electrovan-app" / "src",
-    pathlib.Path("electrovan_master/Electrovan-master/electrovan-app/src").resolve(),
 ]
 
 def _find_frontend_src() -> pathlib.Path:
