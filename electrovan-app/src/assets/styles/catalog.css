@@ -1,0 +1,523 @@
+/* ==== Block Catalog ==== */
+
+.cat-title {
+    margin-top: 30px;
+    color: rgb(var(--blue-100-rgb));
+    display: flex;
+    justify-self: center;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+.cat-brand {
+    color: rgb(var(--blue-200-rgb));
+}
+
+.brand-nuv {
+    margin-top: 40px;
+    height: 230px;
+    width: 99vw;
+    padding: 25px 0px 25px 0px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border-top: 5px solid;
+    border-bottom: 5px solid;
+    border-color: rgb(var(--blue-100-rgb));
+}
+
+.brand-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.carousel-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.brand-nuv img {
+    cursor: pointer;
+}
+
+.scroll-carousel {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    max-width: 1075px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    flex-shrink: 0;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scroll-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-btn {
+    background-color: rgb(var(--white-bg-rgb));
+}
+
+.brand-icon:hover {
+    color: rgb(var(--white-bg-rgb));
+}
+
+.brand-button {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    height: 150px;
+    width: 175px;
+    color: rgb(var(--blue-400-rgb));
+    background-color: rgb(var(--white-bg-rgb));
+    border: 5px solid;
+    border-color: rgb(var(--blue-100-rgb));
+    border-radius: 30px;
+    padding: 10px 35px;
+    transition: 0.3s ease-in-out;
+}
+
+.brand-button.active {
+    color: rgb(var(--white-bg-rgb));
+    background-color: rgb(var(--blue-200-rgb));
+}
+
+.brand-button:hover {
+    color: rgb(var(--white-bg-rgb));
+    background-color: rgb(var(--blue-200-rgb));
+}
+
+.indicator {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.brand-indicator {
+    background-color: rgb(var(--blue-200-rgb));
+    height: 5px;
+    width: 120px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.brand-indicator.active {
+    background-color: rgb(var(--blue-400-rgb));
+    height: 10px;
+}
+
+/* ==== Full Catalog ==== */
+
+.full-catalog {
+    margin-top: 80px;
+    color: rgb(var(--blue-400-rgb));
+    scroll-behavior: smooth;
+}
+
+.catalog-help {
+    margin-top: 45px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    color: rgb(var(--blue-200-rgb));
+}
+
+.help-button {
+    color: rgb(var(--blue-200-rgb));
+    background-color: rgb(var(--white-bg-rgb));
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: rgb(var(--blue-200-rgb));
+    padding: 5px 15px;
+    transition: 0.3s ease-in-out;
+}
+
+.help-button:hover {
+    background-color: rgb(var(--blue-200-rgb));
+    color: rgb(var(--white-bg-rgb));
+}
+
+.cat-wrapp {
+    position: relative;
+    width: 100%;
+    margin-top: 35px;
+    padding-bottom: 8px; /* Minimal space for underline */
+    overflow: hidden; /* Never show vertical scroll */
+}
+
+.catalog-categories {
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    overflow-x: auto;
+    overflow-y: hidden; /* Strictly horizontal scroll only */
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.catalog-categories::-webkit-scrollbar {
+    display: none;
+}
+
+.catalog-categories button {
+    background-color: rgb(var(--white-bg-rgb));
+    color: rgb(var(--blue-400-rgb));
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.under-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: rgb(var(--blue-400-rgb));
+}
+
+.top-line {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 6px;
+    width: 0;
+    border-radius: 10px;
+    background-color: rgb(var(--blue-200-rgb));
+    transition: all 0.3s ease;
+}
+
+/* ==== Catalog cards ==== */
+
+.catalog-cards {
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 22px;
+    border: 1px solid;
+    border-color: rgb(var(--blue-100-rgb));
+    width: 100%;
+}
+
+/* Wrapper ensures stable aspect ratio on iOS Safari without using aspect-ratio property */
+.card-img-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 ratio */
+    overflow: hidden;
+    border-top-left-radius: 21px;
+    border-top-right-radius: 21px;
+    flex-shrink: 0;
+}
+
+.card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: rgb(var(--blue-400-rgb));
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex: 1;
+}
+
+.title-in {
+    color: rgb(var(--blue-100-rgb));
+}
+
+.card-inner-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-inner-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.catalog-line {
+    background-color: rgb(var(--blue-100-rgb));
+    height: 1px;
+    width: auto;
+}
+
+.card-params {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: space-around; /* Center and distribute icons evenly */
+}
+
+.card-params img {
+    height: 35px;
+    width: 35px;
+}
+
+.one-param {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* Push price left, button right */
+    gap: 6px;
+}
+
+.card-cost {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card-cost img {
+    height: 13px;
+    width: 13px;
+    margin-left: -1px;
+}
+
+.card-button {
+    background-color: rgb(var(--white-bg-rgb));
+    color: rgb(var(--blue-200-rgb));
+
+    border: 1px solid;
+    border-color: rgb(var(--blue-200-rgb));
+    border-radius: 8px;
+    padding: 3px 2px;
+
+    transition: 0.2s ease-in-out;
+}
+
+.card-button:hover {
+    background-color: rgb(var(--blue-200-rgb));
+    color: rgb(var(--white-bg-rgb));
+}
+
+.catalog-cars {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+
+/* ==== Paginator ==== */
+
+.paginator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+    color: rgb(var(--blue-100-rgb));
+}
+
+.paginator button {
+    background-color: rgb(var(--white-bg-rgb));
+    color: rgb(var(--blue-100-rgb));
+    transition: 0.2s ease-in-out;
+}
+
+.paginator img {
+    border: 2px solid;
+    border-radius: 30px;
+    border-color: rgb(var(--blue-400-rgb));
+    transition: 0.2s ease-in-out;
+
+}
+
+.paginator img:hover {
+    background-color: rgb(var(--blue-100-rgb));
+}
+
+.paginator button.active {
+    color: rgb(var(--blue-400-rgb));
+}
+
+.paginator button:hover {
+    color: rgb(var(--blue-400-rgb));
+}
+
+.paginator .dots {
+    padding-right: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* ==== Mobile ==== */
+
+@media (max-width: 768px) {
+
+    /* Brand carousel */
+    .brand-nuv {
+        height: auto;
+        padding: 16px 0;
+    }
+
+    .brand-carousel {
+        gap: 16px;
+    }
+
+    .scroll-carousel {
+        gap: 16px;
+        padding: 0 16px;
+    }
+
+    .brand-button {
+        width: 120px;
+        height: 100px;
+        padding: 8px 16px;
+        border-width: 3px;
+        border-radius: 16px;
+        font-size: 12px;
+    }
+
+    .brand-indicator {
+        width: 60px;
+    }
+
+    /* Full catalog heading */
+    .cat-title {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .catalog-help {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    /* Category tabs — horizontally scrollable strip */
+    .cat-wrapp {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .catalog-categories {
+        gap: 24px;
+        white-space: nowrap;
+        padding-bottom: 4px;
+    }
+
+    /* Cards — 2 columns. Use calc() instead of 1fr for stable iOS layout */
+    .catalog-cards {
+        grid-template-columns: calc(50% - 5px) calc(50% - 5px);
+        gap: 10px;
+        padding-top: 16px;
+    }
+
+    .card-img-wrap {
+        padding-top: 62%; /* Slightly taller ratio for narrow columns */
+    }
+
+    .card-titles {
+        margin-left: 8px;
+        margin-right: 8px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        gap: 4px;
+        font-size: 12px;
+    }
+
+    .title-in {
+        font-size: 10px;
+    }
+
+    .card-inner-description {
+        display: none;
+    }
+
+    .card-params {
+        gap: 2px;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+    }
+
+    .card-params img {
+        height: 18px;
+        width: 18px;
+    }
+
+    .one-param {
+        font-size: 9px;
+        min-width: 0;
+    }
+
+    .card-price {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        padding: 0 4px 4px;
+    }
+
+    .card-cost {
+        font-size: 10px;
+    }
+
+    .card-button {
+        width: 100%;
+        padding: 5px 4px;
+        text-align: center;
+        font-size: 10px;
+    }
+
+    .paginator {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 8px 24px 12px;
+        margin-left: -24px;
+        margin-right: -24px;
+        gap: 6px;
+        scrollbar-width: none;
+    }
+
+    .paginator::-webkit-scrollbar {
+        display: none;
+    }
+
+    .paginator button {
+        flex-shrink: 0;
+        min-width: 36px;
+        min-height: 36px;
+    }
+}
+
+@media (max-width: 420px) {
+    /* Single column on very narrow screens */
+    .catalog-cards {
+        grid-template-columns: 1fr;
+    }
+}

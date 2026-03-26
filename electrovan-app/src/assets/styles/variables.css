@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --white-bg-rgb: 242, 248, 252;
+    --white-base-rgb: 248, 250, 252;
+    --blue-100-rgb: 158, 179, 194;
+    --blue-200-rgb: 6, 90, 130;
+    --blue-300-rgb: 27, 59, 111;
+    --blue-400-rgb: 33, 41, 92;
+
+    --ff-inter: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+    /* ===== Font Weights ===== */
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+
+    /* ===== Display ===== */
+    --fs-display-xl: 44px;
+    --lh-display-xl: 56px;
+
+    /* ===== Headings ===== */
+    --fs-heading-xl: 30px;
+    --lh-heading-xl: 40px;
+
+    --fs-heading-lg: 24px;
+    --lh-heading-lg: 32px;
+
+    /* ===== Body ===== */
+    --fs-body-lg: 18px;
+    --lh-body-lg: 26px;
+
+    --fs-body-md: 16px;
+    --lh-body-md: 22px;
+
+    --fs-body-sm: 16px;
+    --lh-body-sm: 20px;
+
+    /* ===== Meta ===== */
+    --fs-caption: 14px;
+    --lh-caption: 20px;
+
+    --fs-caption-sm: 12px;
+    --lh-caption-sm: 16px;
+
+    --fs-tiny: 10px;
+    --lh-tiny: 14px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        /* 28px (semi bold) */
+        --fs-display-xl: 28px;
+        --lh-display-xl: 36px;
+
+        /* 24px (semi bold) */
+        --fs-heading-xl: 24px;
+        --lh-heading-xl: 32px;
+
+        /* 20px (medium) */
+        --fs-heading-lg: 20px;
+        --lh-heading-lg: 28px;
+
+        /* 16px (regular) */
+        --fs-body-lg: 16px;
+        --lh-body-lg: 24px;
+
+        /* 14px (lighter) */
+        --fs-body-md: 14px;
+        --lh-body-md: 20px;
+
+        /* 14px (semi bold) */
+        --fs-body-sm: 14px;
+        --lh-body-sm: 20px;
+
+        /* 12px (semi bold) */
+        --fs-caption: 12px;
+        --lh-caption: 16px;
+        
+        --fs-caption-sm: 12px;
+        --lh-caption-sm: 16px;
+
+        /* 10px (medium) */
+        --fs-tiny: 10px;
+        --lh-tiny: 14px;
+    }
+}

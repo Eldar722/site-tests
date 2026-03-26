@@ -1,0 +1,126 @@
+/* ==== Popular Cards ==== */
+
+.catalog-title {
+    color: rgb(var(--blue-400-rgb));
+}
+
+.popular-cards {
+    position: relative;
+    min-height: 100vh;
+}
+
+.popular-card1 {
+    background-image: url('../images/cars/GEELY.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 20px;
+    color: rgb(var(--white-bg-rgb));
+}
+
+.popular-card2 {
+    background-image: url('../images/cars/Renault.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 20px;
+    color: rgb(var(--white-bg-rgb));
+}
+
+.popular-card3 {
+    background-image: url('../images/cars/Kia.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 20px;
+    color: rgb(var(--white-bg-rgb));
+}
+
+.popular-cost {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.pop-why {
+    color: rgb(var(--blue-100-rgb));
+    padding-top: 80px;
+}
+
+.pop-nuv {
+    padding-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.button-block {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    justify-content: end;
+    margin-top: 65px;
+}
+
+.pop-button {
+    padding: 12px 18px;
+    border: 2px solid transparent;
+    border-radius: 40px;
+    background-color: rgb(var(--blue-100-rgb));
+    color: rgb(var(--blue-300-rgb));
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease,
+        transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.pop-button:hover {
+    background-color: rgb(var(--blue-300-rgb));
+    color: rgb(var(--white-bg-rgb));
+    border-color: rgb(var(--blue-100-rgb));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(27, 59, 111, 0.55);
+}
+
+@media (max-width: 768px) {
+    .popular-cards {
+        min-height: unset;
+    }
+
+    /* Each card takes up at least the full phone screen height */
+    .popular-card1,
+    .popular-card2,
+    .popular-card3 {
+        min-height: 100svh;
+        min-height: 100vh;
+        padding-top: 80px; /* Clear the fixed header */
+        background-attachment: scroll; /* Disable parallax-like behaviour on iOS */
+        background-position: center center;
+    }
+
+    .popular-cost {
+        padding-top: 24px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .pop-why {
+        padding-top: 32px;
+    }
+
+    .pop-nuv {
+        padding-top: 16px;
+        gap: 10px;
+    }
+
+    .button-block {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-top: 32px;
+        gap: 12px;
+    }
+
+    .pop-button {
+        width: 100%;
+        text-align: center;
+        padding: 14px 20px;
+    }
+}

@@ -1,0 +1,44 @@
+/* Help page */
+
+.help-section {
+    margin-top: 50px;
+}
+
+.help-content {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+}
+
+.help-title {
+    color: rgb(var(--blue-100-rgb));
+}
+
+.help-title span {
+    color: rgb(var(--blue-200-rgb));
+}
+
+.help-categories {
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    color: rgb(var(--blue-400-rgb));
+}
+
+.recommend-items {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 11px 15px;
+    border-radius: 33px;
+    background-color: rgb(var(--blue-200-rgb));
+    color: rgb(var(--white-bg-rgb));
+    width: fit-content;
+}
+
+.recommend-items span {
+    color: rgb(var(--blue-400-rgb));
+}

@@ -1,0 +1,103 @@
+/* Value section */
+
+.value-block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 64px;
+}
+
+.value-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 32px;
+    gap: 24px;
+    border-radius: 16px;
+    background-color: rgb(var(--blue-100-rgb));
+    overflow: hidden;
+}
+
+.value-card-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: rgb(var(--blue-200-rgb));
+    transform: scaleX(0);
+    transform-origin: left center;
+}
+
+.number-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    transition: ease-in-out 0.3s;
+}
+
+.value-card:hover .number-block {
+    background-color: rgb(var(--blue-200-rgb));
+    color: rgb(var(--white-base-rgb));
+}
+
+.title-subtitle-block {
+    display: flex;
+    flex-direction: column;
+    max-width: 16rem;
+    margin-bottom: auto;
+    gap: 12px;
+}
+
+.advantages {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+@media (max-width: 768px) {
+    .value-block {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        padding-bottom: 24px;
+
+        margin-left: -24px;
+        margin-right: -24px;
+        padding-left: 24px;
+        padding-right: 24px;
+        
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .value-block::-webkit-scrollbar {
+        display: none;
+    }
+
+    .value-card {
+        flex: 0 0 auto;
+        width: 280px; 
+        min-width: 280px;
+        height: auto;
+        align-self: stretch;
+
+        scroll-snap-align: center;
+        padding: 24px;
+    }
+
+    .value-card.focused .number-block {
+        background-color: rgb(var(--blue-200-rgb));
+        color: rgb(var(--white-base-rgb));
+    }
+    
+    .value-card-line {
+        height: 4px;
+        transform: scaleX(0); /* Reset: GSAP will animate from here */
+        transform-origin: left center;
+    }
+}

@@ -1,0 +1,42 @@
+name: CI — Electrovan Python (JSX-linked tests)
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    name: Unit-тесты (pytest + JSX parsing)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Python-тесты
+        uses: actions/checkout@v4
+        with:
+          path: python-tests
+
+      - name: Checkout Electrovan frontend
+        uses: actions/checkout@v4
+        with:
+          repository: your-username/Electrovan   # <-- замените на ваш репозиторий
+          path: Electrovan-master
+
+      - name: Установка Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установка зависимостей
+        run: pip install pytest pytest-cov
+
+      - name: Запуск тестов с покрытием
+        working-directory: python-tests
+        run: pytest --cov=src --cov-report=term-missing --cov-fail-under=80
+
+      - name: Сохранить отчёт покрытия
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: python-tests/htmlcov/

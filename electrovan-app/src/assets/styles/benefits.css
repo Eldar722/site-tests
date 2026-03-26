@@ -1,0 +1,108 @@
+/* Benefits section */
+
+.benefits-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 48px;
+}
+
+.benefit-box {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    border-radius: 16px;
+    background-color: rgb(var(--white-base-rgb));
+}
+
+.benefit-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.comparison-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.comparison-line {
+    display: block;
+    width: 35%;
+    height: 24px;
+    border-radius: 50px;
+}
+
+.electro .comparison-line {
+    background-color: rgb(var(--blue-200-rgb));
+}
+
+.diesel .comparison-line {
+    background-color: rgb(var(--blue-100-rgb));
+}
+
+.calculation-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 16px;
+    margin: 24px;
+}
+
+.average-calculation,
+.total-calculation {
+    padding: 24px;
+    border-radius: 16px;
+    background-color: rgb(var(--white-base-rgb));
+}
+
+.average-calculation {
+    flex: 0 0 auto;
+}
+
+.total-calculation {
+    flex: 0 0 auto;
+}
+
+/* ==== Mobile ==== */
+
+@media (max-width: 768px) {
+
+    .benefits-group {
+        gap: 24px;
+    }
+
+    .benefit-box {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .comparison-line {
+        height: 16px;
+    }
+
+    .comparison-header {
+        margin: 4px 0;
+    }
+
+    .benefit-comparison {
+        gap: 4px;
+        margin-bottom: 4px;
+    }
+
+    .calculation-group {
+        flex-direction: column;
+        margin: 16px 12px;
+        gap: 12px;
+    }
+
+    .average-calculation,
+    .total-calculation {
+        padding: 16px;
+        border-radius: 12px;
+        text-align: center;
+    }
+}

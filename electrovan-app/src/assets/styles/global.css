@@ -1,0 +1,67 @@
+@import "./variables.css";
+@import "./reset.css";
+@import "./typography.css";
+@import "./header.css";
+@import "./hero.css";
+@import "./value.css";
+@import "./directions.css";
+@import "./popular.css";
+@import "./catalog.css";
+@import "./benefits.css";
+@import "./help.css";
+@import "./trust.css";
+@import "./cta.css";
+@import "./footer.css";
+
+section {
+    padding: 64px 0 16px;
+    scroll-margin-top: 48px;
+}
+
+body {
+    background-color: rgb(var(--white-bg-rgb));
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.page-blue {
+    background: rgb(var(--blue-300-rgb));
+}
+
+.page-white {
+    background: rgb(var(--white-bg-rgb));
+}
+
+.text-blue-300 {
+    color: rgb(var(--blue-300-rgb));
+}
+
+.text-blue-200 {
+    color: rgb(var(--blue-200-rgb));
+}
+
+.text-blue-100 {
+    color: rgb(var(--blue-100-rgb));
+}
+
+.text-white-base {
+    color: rgb(var(--white-base-rgb));
+}
+
+.section-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 64px;
+    text-align: center;
+}
+
+.section-heading p {
+    max-width: 36rem;
+}
